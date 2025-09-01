@@ -14,16 +14,19 @@ export type Post = {
 
 const PostsPage = async () => {
   const posts: Post[] = await prisma.post.findMany({
+    include: {
+      user: true,
+    },
     orderBy: {
       createdAt: "asc",
     },
-    select: {
-      title: true,
-      content: true,
-      id: true,
-    },
-    take: 3,
-    skip: 1,
+    // select: {
+    //   title: true,
+    //   content: true,
+    //   id: true,
+    // },
+    take: 10,
+    // skip: 1,
   });
 
   const totalPosts = await prisma.post.count();

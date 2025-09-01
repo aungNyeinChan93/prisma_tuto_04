@@ -2,7 +2,12 @@ import prisma from "@/config/prisma-config";
 import React from "react";
 
 const UserPage = async () => {
-  const users = await prisma.user.findMany();
+  const users = await prisma.user.findMany({
+    include: {
+      posts: true,
+      profile: true,
+    },
+  });
 
   return (
     <React.Fragment>

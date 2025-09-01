@@ -6,7 +6,7 @@ import prisma from "@/config/prisma-config"
 import path from "path"
 
 
-export async function createPost(data: Partial<Post>) {
+export async function createPost(data: Partial<Post>, email?: string) {
 
     let image_url = null
     if (data.image && data.image instanceof File) {
@@ -14,6 +14,8 @@ export async function createPost(data: Partial<Post>) {
         image_url = fileName
         // upload image
     }
-    const post = await prisma.post.create({ data: { ...data, image: image_url } })
+    const post = await prisma.post.create({
+        data: { ...data, image: image_url, user: { connect: { email } } },
+    })
     return { post }
 }
