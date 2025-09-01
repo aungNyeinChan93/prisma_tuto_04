@@ -31,11 +31,6 @@ export async function createProduct(productData: any) {
                     email: "chan@123",
                 },
             },
-            category: {
-                connect: {
-                    id: 1,
-                },
-            },
         },
     });
     return { product }

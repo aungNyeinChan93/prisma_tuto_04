@@ -34,7 +34,7 @@ export default function PostForm() {
     }
   };
 
-  const handleForm = async (form: FormData) => {
+  const actionForm = async (form: FormData) => {
     const auth_email = form.get("email") as string;
     const { post } = await createPost(formData, auth_email);
     if (!post) {
@@ -51,7 +51,7 @@ export default function PostForm() {
     <div className="flex justify-center items-center min-h-screen bg-gray-50 py-10">
       <form
         //
-        action={handleForm}
+        action={actionForm}
         className="w-full max-w-lg bg-white shadow-lg rounded-2xl p-6 space-y-4"
       >
         <h2 className="text-2xl font-bold text-gray-800">Create New Post</h2>
