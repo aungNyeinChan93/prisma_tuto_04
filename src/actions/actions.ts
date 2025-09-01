@@ -15,7 +15,7 @@ export async function createPost(data: Partial<Post>, email?: string) {
         // upload image
     }
     const post = await prisma.post.create({
-        data: { ...data, image: image_url, user: { connect: { email } } },
+        data: { title: data.title || "", content: data.content, image: image_url, user: { connect: { email } } },
     })
     return { post }
 }
