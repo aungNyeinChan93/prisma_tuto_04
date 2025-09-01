@@ -19,3 +19,24 @@ export async function createPost(data: Partial<Post>, email?: string) {
     })
     return { post }
 }
+
+
+export async function createProduct(productData: any) {
+    const product = await prisma.product.create({
+        data: {
+            ...productData,
+            price: Number(productData?.price),
+            user: {
+                connect: {
+                    email: "chan@123",
+                },
+            },
+            category: {
+                connect: {
+                    id: 1,
+                },
+            },
+        },
+    });
+    return { product }
+}
